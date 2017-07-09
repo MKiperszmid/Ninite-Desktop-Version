@@ -1,0 +1,9 @@
+D:\Projects\Visual Studio\NiniteClone\Ninite Desktop Version\bin\Debug\NiniteDesktop.exe.config
+D:\Projects\Visual Studio\NiniteClone\Ninite Desktop Version\bin\Debug\NiniteDesktop.exe
+D:\Projects\Visual Studio\NiniteClone\Ninite Desktop Version\bin\Debug\NiniteDesktop.pdb
+D:\Projects\Visual Studio\NiniteClone\Ninite Desktop Version\obj\Debug\Ninite Desktop Version.csprojResolveAssemblyReference.cache
+D:\Projects\Visual Studio\NiniteClone\Ninite Desktop Version\obj\Debug\NiniteClone.Form1.resources
+D:\Projects\Visual Studio\NiniteClone\Ninite Desktop Version\obj\Debug\NiniteDesktop.Properties.Resources.resources
+D:\Projects\Visual Studio\NiniteClone\Ninite Desktop Version\obj\Debug\Ninite Desktop Version.csproj.GenerateResource.Cache
+D:\Projects\Visual Studio\NiniteClone\Ninite Desktop Version\obj\Debug\NiniteDesktop.exe
+D:\Projects\Visual Studio\NiniteClone\Ninite Desktop Version\obj\Debug\NiniteDesktop.pdb
