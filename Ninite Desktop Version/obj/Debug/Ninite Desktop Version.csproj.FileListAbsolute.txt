@@ -7,3 +7,11 @@ D:\Projects\Visual Studio\NiniteClone\Ninite Desktop Version\obj\Debug\NiniteDes
 D:\Projects\Visual Studio\NiniteClone\Ninite Desktop Version\obj\Debug\Ninite Desktop Version.csproj.GenerateResource.Cache
 D:\Projects\Visual Studio\NiniteClone\Ninite Desktop Version\obj\Debug\NiniteDesktop.exe
 D:\Projects\Visual Studio\NiniteClone\Ninite Desktop Version\obj\Debug\NiniteDesktop.pdb
+D:\Github Repository\Ninite-Desktop-Version\Ninite Desktop Version\bin\Debug\NiniteDesktop.exe.config
+D:\Github Repository\Ninite-Desktop-Version\Ninite Desktop Version\bin\Debug\NiniteDesktop.exe
+D:\Github Repository\Ninite-Desktop-Version\Ninite Desktop Version\bin\Debug\NiniteDesktop.pdb
+D:\Github Repository\Ninite-Desktop-Version\Ninite Desktop Version\obj\Debug\NiniteClone.Form1.resources
+D:\Github Repository\Ninite-Desktop-Version\Ninite Desktop Version\obj\Debug\NiniteDesktop.Properties.Resources.resources
+D:\Github Repository\Ninite-Desktop-Version\Ninite Desktop Version\obj\Debug\Ninite Desktop Version.csproj.GenerateResource.Cache
+D:\Github Repository\Ninite-Desktop-Version\Ninite Desktop Version\obj\Debug\NiniteDesktop.exe
+D:\Github Repository\Ninite-Desktop-Version\Ninite Desktop Version\obj\Debug\NiniteDesktop.pdb

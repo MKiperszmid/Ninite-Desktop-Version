@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
@@ -17,16 +11,20 @@ namespace NiniteClone
     public partial class Form1 : Form
     {
         private readonly List<string> _programs = new List<string>();
-
+        
         private readonly List<string> _urls = new List<string> { "https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.70-installer.msi",
             "https://steamcdn-a.akamaihd.net/client/installer/SteamSetup.exe",
             "https://github.com/dewster/lol-mastery-manager-new-client/releases/download/1.2.2/LoLMasteryManagerSetup.msi",
         "https://desktop.githubusercontent.com/releases/0.6.2-e2d9e7b3/GitHubDesktopSetup.exe",
         "http://www.7-zip.org/a/7z1700-x64.exe"};
-        
+
+        private List<ProgressBar> _progressBars = new List<ProgressBar>();
+        private List<Label> _labels = new List<Label>();
+        private List<CheckBox> _checkBoxes = new List<CheckBox>();
         public Form1()
         {
             InitializeComponent();
+            
         }
         
         public void AppInstaller(string path)
@@ -59,51 +57,39 @@ namespace NiniteClone
         }
         public void DownloadApps()
         {
+            int index = 0;
             foreach (var program in _programs)
             {
                 var called = false;
-                var prog = progressBar1;
+                var progressBar = progressBar1;
                 var lbl = label1;
 
-                if (_urls[0] == program)
+                while (_urls[index] != program)
                 {
-                    prog = progressBar1;
-                    lbl = label1;
+                    index++;
                 }
-                if (_urls[1] == program)
-                {
-                    prog = progressBar2;
-                    lbl = label2;
-                }
-                if (_urls[2] == program)
-                {
-                    prog = progressBar3;
-                    lbl = label3;
-                }
-                if (_urls[3] == program)
-                {
-                    prog = progressBar4;
-                    lbl = label4;
-                }
-                if (_urls[4] == program)
-                {
-                    prog = progressBar5;
-                    lbl = label5;
-                }
-
-                var wc = new WebClient();
-                var name = Path.GetFileName(program);
-                wc.DownloadFileAsync(new Uri(program), $"{name}");
-                wc.DownloadProgressChanged += (object sender, DownloadProgressChangedEventArgs e) =>
-                {
-                    prog.Value = e.ProgressPercentage;
-                    lbl.Text = e.ProgressPercentage + "%";
-                    if (e.ProgressPercentage != 100 || called) return;
-                    called = true;
-                    new Thread(() => { MessageBox.Show($@"Installing {program}", @"Installing"); }).Start();
-                    AppInstaller(program);
-                };
+                progressBar = _progressBars[index];
+                lbl = _labels[index];
+                Download(program, progressBar, lbl, called);
+                index++;
             }
+        }
+
+        public void Download(string program, ProgressBar progressBar, Label lbl, bool called)
+        {
+            Log("Downloading " + program);
+            var wc = new WebClient();
+            var name = Path.GetFileName(program);
+            wc.DownloadFileAsync(new Uri(program), $"{name}");
+            wc.DownloadProgressChanged += (object sender, DownloadProgressChangedEventArgs e) =>
+            {
+                progressBar.Value = e.ProgressPercentage;
+                lbl.Text = e.ProgressPercentage + "%";
+                if (e.ProgressPercentage != 100 || called) return;
+                called = true;
+                new Thread(() => { Log($"Installing {program}"); }).Start();
+                AppInstaller(program);
+            };
         }
 
         #region List Functions
@@ -119,22 +105,49 @@ namespace NiniteClone
         }
 
         #endregion List Functions
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
             ClearList();
-            if(checkBox1.Checked)
-                AddApp(_urls[0]);
-            if(checkBox2.Checked)
-                AddApp(_urls[1]);
-            if(checkBox3.Checked)
-                AddApp(_urls[2]);
-            if(checkBox4.Checked)
-                AddApp(_urls[3]);
-            if(checkBox5.Checked)
-                AddApp(_urls[4]);
-            
+            var index = 0;
+
+            foreach (Control checkBox in this.Controls)
+            {
+                if (!(checkBox is CheckBox))
+                    continue;
+                var checkbox = checkBox as CheckBox;
+                _checkBoxes.Add(checkbox);
+                if(checkbox.Checked)
+                {
+                    AddApp(_urls[index]);
+                }
+                index++;
+            }
             DownloadApps();
+        }
+
+        private void Log(string msg)
+        {
+            richTextBox1.Text += msg + Environment.NewLine;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            foreach (var control in this.Controls)
+            {
+                if (control is ProgressBar)
+                {
+                    _progressBars.Add(control as ProgressBar);
+                }
+                else if (control is Label)
+                {
+                    _labels.Add(control as Label);
+                }
+                else if (control is CheckBox)
+                {
+                    _checkBoxes.Add(control as CheckBox);
+                }
+            }
         }
     }
 }
